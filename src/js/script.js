@@ -171,14 +171,16 @@
               price += option.price;
             }
 
+          } else {
             // check if the option is default 
-            else if(option.default){
-              // reduce price variable 
+            if(option.default){
+              // reduce price variable
               price -= option.price;
             }
           }
         }
       }
+      
     
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;

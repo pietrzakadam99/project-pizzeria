@@ -14,7 +14,7 @@ utils.createPropIfUndefined = function(obj, key, value = []){
   }
 };
 
-utils.serializeFormToObject = function(form){
+uutils.serializeFormToObject = function(form){
   let output = {};
   if (typeof form == 'object' && form.nodeName == 'FORM') {
     for (let field of form.elements) {

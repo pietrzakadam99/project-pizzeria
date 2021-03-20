@@ -288,10 +288,10 @@
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
-          params[paramId] = {
-            name: param.label,
-            options: {}
-          };
+        params[paramId] = {
+          name: param.label,
+          options: {}
+        };
     
         // for every option in this category
         for(let optionId in param.options) {
@@ -343,10 +343,10 @@
       /* thisWidget.value zmieni się tylko wtedy, jeśli nowa wpisana w input wartość będzie inna niż obecna, ustala czy to co wpisano w input jest faktycznie liczbą */
       if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
         thisWidget.value = newValue;
-        thisWidget.announce();
+        //thisWidget.announce();
       }
 
-
+      thisWidget.announce();
       thisWidget.input.value = thisWidget.value;
     }
 
@@ -393,7 +393,7 @@
       const thisCart = this;
 
       /* generate HTML based on template */
-      const generatedHTML = templates.menuProduct(menuProduct.data);
+      const generatedHTML = templates.cartProduct(menuProduct);
       /* create element DOM */
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
       /* add element */

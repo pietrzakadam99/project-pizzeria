@@ -413,11 +413,11 @@
       // referencja do elementu pokazującego koszt przesyłki
       thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
       // referencja do elementu pokazującego cenę końcową, bez kosztu przesyłki
-      thisCart.dom.subTotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subTotalPrice);
+      thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
       // referencja do elementów pokazujących cenę końcową
       thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
       // referencja do elementu pokazującego liczbę sztuk 
-      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelectorAll(select.cart.totalNumber);
+      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
     }
 
     initActions(){
@@ -438,24 +438,25 @@
       // całościowa liczba sztuk
       thisCart.totalNumber = 0;
       // suma ceny za wszystko (bez kosztu dostawy)
-      thisCart.subTotalPrice = 0;
+      thisCart.subtotalPrice = 0;
 
       for (let product of thisCart.products){
         thisCart.totalNumber += product.amount; //zwiększenie totalNumber o liczbę sztuk danego produktu
         thisCart.subTotalPrice += product.price; // zwiększenie subTotalPrice o cenę całkowitą (price)
       }
-      if(thisCart.totalPrice !== 0) {
-        thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
+      if (thisCart.totalNumber !== 0) {
+        thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
       }
       else {
         thisCart.totalPrice = 0;
         thisCart.deliveryFee = 0;
       }
-
+      thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
       for(let price of thisCart.dom.totalPrice){
         price.innerHTML = thisCart.totalPrice;
       }
-      thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
     }
   }
   

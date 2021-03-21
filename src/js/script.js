@@ -442,7 +442,7 @@
 
       for (let product of thisCart.products){
         thisCart.totalNumber += product.amount; //zwiększenie totalNumber o liczbę sztuk danego produktu
-        thisCart.subTotalPrice += product.price; // zwiększenie subTotalPrice o cenę całkowitą (price)
+        thisCart.subtotalPrice += product.price; // zwiększenie subTotalPrice o cenę całkowitą (price)
       }
       if (thisCart.totalNumber !== 0) {
         thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;

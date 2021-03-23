@@ -431,7 +431,7 @@
       // referencja do phone
       thisCart.dom.formPhone = thisCart.dom.form.querySelector(select.cart.phone);
       // referencja do address
-      thisCart.dom.formAddress = thisCart.dom.form.querySelector(select.cart.phone);
+      thisCart.dom.formAddress = thisCart.dom.form.querySelector(select.cart.address);
     }
 
     initActions(){

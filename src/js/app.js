@@ -118,7 +118,7 @@ const app = {
     console.log('templates:', templates); */
 
     thisApp.initPages();
-
+    
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();

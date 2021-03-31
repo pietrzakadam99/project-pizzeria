@@ -50,7 +50,7 @@ const app = {
     for(let page of thisApp.pages){
     /* if(page.id == pageId){
         page.classList.add(classNames.pages.active);
-      } else {
+      } else {  
         page.classList.remove(classNames.pages.active);
       }
     } */ 

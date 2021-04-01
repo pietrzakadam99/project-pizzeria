@@ -13,7 +13,7 @@ class AmountWidget extends BaseWidget{
     console.log('AmountWidget', thisWidget);
   }
 
-  getElements(element){
+  getElements(){
     const thisWidget = this;
     
 

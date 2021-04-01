@@ -30,7 +30,6 @@ export const select = {
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
-  },
   datePicker: {
     wrapper: '.date-picker',
     input: `input[name="date"]`,
@@ -40,6 +39,7 @@ export const select = {
     input: 'input[type="range"]',
     output: '.output',
   },
+},
   cart: {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',

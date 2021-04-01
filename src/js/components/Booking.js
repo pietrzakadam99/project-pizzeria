@@ -15,7 +15,7 @@ class Booking{
     const thisBooking = this;
 
     const generatedHTML = templates.bookingWidget(element);
-    thisBooking.dom = [];
+    thisBooking.dom = {};
 
     thisBooking.dom.wrapper = document.querySelector(select.containerOf.booking);
     thisBooking.dom.wrapper.innerHTML = generatedHTML;

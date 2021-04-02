@@ -155,9 +155,7 @@ class Booking{
       } else { 
         table.classList.remove(classNames.booking.tableBooked);
       }
-      table.addEventListener('click', function(){
-        table.classList.toggle(classNames.booking.tableBooked);
-      });
+
     }
   }
     
@@ -223,6 +221,7 @@ class Booking{
 
         } else {
           thisBooking.removeSelected();
+          
           table.classList.add(classNames.booking.tableSelected);
           const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
           thisBooking.bookedTable = parseInt(tableNumber);

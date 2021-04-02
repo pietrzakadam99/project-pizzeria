@@ -105,7 +105,7 @@ export const app = {
     thisApp.booking = new Booking(bookingWidgetContainer);
   },
 
- /* initHome: function(){
+  /* initHome: function(){
     const thisApp = this;
 
     const homeElement = document.querySelector(select.containerOf.home);

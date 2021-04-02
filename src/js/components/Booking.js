@@ -222,15 +222,14 @@ class Booking{
 
         if(table.classList.contains('booked')){ 
           alert('not available');
-        }
-        else
-        {
+
+        } else {
           thisBooking.removeSelected();
         
           table.classList.add(classNames.booking.tableSelected);
         
           const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
-          thisBooking.bookedTable = parseInt(tableNumber);
+          thisBooking.tableBooked = parseInt(tableNumber);
         }
       });
     }
@@ -245,7 +244,7 @@ class Booking{
       selected.classList.remove(classNames.booking.tableSelected);
     }
     
-    delete thisBooking.bookedTable;
+    delete thisBooking.tableBooked;
   }
   
   sendBooking(){
@@ -256,7 +255,7 @@ class Booking{
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.bookedTable,
+      table: thisBooking.tableBooked,
       ppl: parseInt(thisBooking.peopleAmount.value),
       duration: parseInt(thisBooking.hoursAmount.value),
       hoursAmount: thisBooking.hoursAmount.value,

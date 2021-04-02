@@ -2,8 +2,9 @@ import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+// import Home from './components/Home.js';
 
-const app = {
+export const app = {
   initPages: function(){
     const thisApp = this;
 
@@ -71,8 +72,6 @@ const app = {
 
   initMenu: function(){
     const thisApp = this;
-
-    console.log('thisApp.data:', thisApp.data);
       
     for(let productData in thisApp.data.products){
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
@@ -90,7 +89,6 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
 
         /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
@@ -98,8 +96,6 @@ const app = {
         /* execute initMenu method */
         thisApp.initMenu();
       });
-
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
   },
 
   initBooking: function(){
@@ -108,6 +104,13 @@ const app = {
     const bookingWidgetContainer = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingWidgetContainer);
   },
+
+ /* initHome: function(){
+    const thisApp = this;
+
+    const homeElement = document.querySelector(select.containerOf.home);
+    thisApp.home = new Home(homeElement);
+  }, */
 
   init: function(){
     const thisApp = this;
@@ -122,6 +125,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    // thisApp.initHome();
   },
 
   initCart: function(){

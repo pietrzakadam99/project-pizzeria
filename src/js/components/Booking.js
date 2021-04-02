@@ -9,7 +9,7 @@ class Booking{
     const thisBooking = this;
 
     thisBooking.render(element);
-    thisBooking.initWidget();
+    thisBooking.initWidgets();
     thisBooking.getData();
     thisBooking.initTables();
   }
@@ -88,8 +88,6 @@ class Booking{
         }
       }
     }
-
-    // console.log('thisBooking.booked', thisBooking.booked);
     thisBooking.updateDOM();
   }
 
@@ -103,7 +101,7 @@ class Booking{
     const startHour = utils.hourToNumber(hour);
 
     for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock+= 0.5){
-      // console.log('loop', hourBlock);
+
       if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
         thisBooking.booked[date][hourBlock] = [];
       }
@@ -193,7 +191,7 @@ class Booking{
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
   }
 
-  initWidget(){
+  initWidgets(){
     const thisBooking = this;
 
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
@@ -212,24 +210,22 @@ class Booking{
     });
   }
 
-  initTables(){
+  initTables() {
     const thisBooking = this;
 
-    for(let table of thisBooking.dom.tables){
+    for (let table of thisBooking.dom.tables) {
 
-      table.addEventListener('click', function(event){
+      table.addEventListener('click', function (event) {
         event.preventDefault();
 
-        if(table.classList.contains('booked')){ 
+        if (table.classList.contains('booked')) { 
           alert('not available');
 
         } else {
           thisBooking.removeSelected();
-        
           table.classList.add(classNames.booking.tableSelected);
-        
           const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
-          thisBooking.tableBooked = parseInt(tableNumber);
+          thisBooking.bookedTable = parseInt(tableNumber);
         }
       });
     }
@@ -244,7 +240,7 @@ class Booking{
       selected.classList.remove(classNames.booking.tableSelected);
     }
     
-    delete thisBooking.tableBooked;
+    delete thisBooking.bookedTable;
   }
   
   sendBooking(){
@@ -255,7 +251,7 @@ class Booking{
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.tableBooked,
+      table: thisBooking.bookedTable,
       ppl: parseInt(thisBooking.peopleAmount.value),
       duration: parseInt(thisBooking.hoursAmount.value),
       hoursAmount: thisBooking.hoursAmount.value,
@@ -285,8 +281,6 @@ class Booking{
         console.log(parsedResponse);
       });
   }
-
-
 
 }
 

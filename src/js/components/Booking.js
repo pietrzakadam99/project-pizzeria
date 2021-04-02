@@ -217,23 +217,23 @@ class Booking{
 
     for(let table of thisBooking.dom.tables){
 
-    table.addEventListener('click', function(event){
-      event.preventDefault();
+      table.addEventListener('click', function(event){
+        event.preventDefault();
 
-      if(table.classList.contains('booked')){ 
-        alert('not available');
-      }
+        if(table.classList.contains('booked')){ 
+          alert('not available');
+        }
         else
-      {
-        thisBooking.removeSelected();
+        {
+          thisBooking.removeSelected();
         
-        table.classList.add(classNames.booking.tableSelected);
+          table.classList.add(classNames.booking.tableSelected);
         
-        const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
-        thisBooking.bookedTable = parseInt(tableNumber);
-      }
-    });
-  }
+          const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
+          thisBooking.bookedTable = parseInt(tableNumber);
+        }
+      });
+    }
   }
   
   removeSelected(){

@@ -68,6 +68,7 @@ class Booking{
   parseData(bookings, eventsCurrent, eventsRepeat){
     const thisBooking = this;
 
+    
     thisBooking.booked = {};
 
     for(let item of bookings){
@@ -106,6 +107,7 @@ class Booking{
         thisBooking.booked[date][hourBlock] = [];
       }
   
+      
       thisBooking.booked[date][hourBlock].push(table);
     }
   }
@@ -113,49 +115,34 @@ class Booking{
   updateDOM(){
     const thisBooking = this;
 
-    // wartości wybierane przez użytkownika 
-    thisBooking.date = thisBooking.datePicker.value; 
+    thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
-    // tego dnia o tej godzinie wszystkie stoliki są dostępne 
-    let allAvailable = false; 
+    let allAvailable = false;
 
-    if( //jeśli okaże się ze w obiekcie thisbooking booked dla tej daty nie ma obiektu albo dla daty i godziy nie ma tablicy, oznacza to ze zaden stolik nie jest zajęty
+    if(
       typeof thisBooking.booked[thisBooking.date] == 'undefined'
       ||
       typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined'
     ){
-      //czyli all available sa dostepne = true
-      allAvailable = true; 
+      allAvailable = true;
     }
 
-    //iteruje przez wszystie stoliki widoczne na mapie 
-    for(let table of thisBooking.dom.tables){ 
-
-      // pobieramy id aktualnego stolika 
-      let tableId = table.getAttribute(settings.booking.tableIdAttribute); 
-
-      //sprawdzamy czy tableId jest liczbą = będzie ona zawsze tekstem
-      if(!isNaN(tableId)){ 
-        // tekst może zostać przekonwertowany na liczbę, więc tableId wyświetli się przez negacje NaN
-        tableId = parseInt(tableId); 
+    for(let table of thisBooking.dom.tables){
+      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      if(!isNaN(tableId)){
+        tableId = parseInt(tableId);
       }
 
       if(
-        // sprawdza czy któryś stolik jest zajęty 
         !allAvailable
         &&
-        // czy tego dnia, o tej godzinie, zajęty jest stolik o tym id
         thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) 
       ){
-        //stolik zajety dostanie klase zapisaną w classnames classNames.booking.table.booked
-        table.classList.add(classNames.booking.tableBooked); 
-        
-        // alternatywnie - jesli wszystkie stoliki sa dostepne lu  nie wszystkie sa dostepne ale ten przez ktory iterujemy nie znajduje sie w this booking booked to chcecmy usunac z niego klase table booked, ktora oznacza ze ten stolik jest zajety
-      } else { 
+        table.classList.add(classNames.booking.tableBooked);
+      } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
-
     }
   }
     
@@ -201,6 +188,7 @@ class Booking{
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
+    
 
     thisBooking.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
@@ -221,10 +209,9 @@ class Booking{
 
         } else {
           thisBooking.removeSelected();
-          
           table.classList.add(classNames.booking.tableSelected);
           const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
-          thisBooking.bookedTable = parseInt(tableNumber);
+          thisBooking.selectedTable = parseInt(tableNumber);
         }
       });
     }
@@ -239,7 +226,7 @@ class Booking{
       selected.classList.remove(classNames.booking.tableSelected);
     }
     
-    delete thisBooking.bookedTable;
+    delete thisBooking.selectedTable;
   }
   
   sendBooking(){
@@ -250,7 +237,7 @@ class Booking{
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.bookedTable,
+      table: thisBooking.selectedTable,
       ppl: parseInt(thisBooking.peopleAmount.value),
       duration: parseInt(thisBooking.hoursAmount.value),
       hoursAmount: thisBooking.hoursAmount.value,

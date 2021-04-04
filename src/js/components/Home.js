@@ -65,7 +65,7 @@ class Home {
     
     thisHome.dom.orderOnline.addEventListener('click', function(){
       app.activatePage('order');
-      window.location.hasg = '/#order';
+      window.location.hash = '/#order';
     });
   }
 }

@@ -67,6 +67,7 @@ class Home {
       app.activatePage('order');
       window.location.hash = '/#order';
     });
+    
   }
 }
   

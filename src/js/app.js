@@ -68,6 +68,7 @@ export const app = {
         link.getAttribute('href') == '#' + pageId
       );
     }
+
   },
 
   initMenu: function(){

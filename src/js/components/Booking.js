@@ -12,6 +12,7 @@ class Booking{
     thisBooking.initWidgets();
     thisBooking.getData();
     thisBooking.initTables();
+    
   }
 
   getData(){
@@ -189,7 +190,6 @@ class Booking{
       thisBooking.updateDOM();
     });
     
-
     thisBooking.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
       thisBooking.sendBooking();
@@ -264,6 +264,10 @@ class Booking{
       .then(function(response){
         return response.json();
       }).then(function(parsedResponse){
+        thisBooking.makeBooked(parsedResponse.date, parsedResponse.hour, parsedResponse.duration, parsedResponse.table);
+        thisBooking.updateDOM();
+        thisBooking.removeSelected();
+        
         console.log(parsedResponse);
       });
   }

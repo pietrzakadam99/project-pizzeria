@@ -135,6 +135,10 @@ class Booking{
         tableId = parseInt(tableId);
       }
 
+      // zmiana godziny, dnia, liczby osób 
+      table.classList.remove(classNames.booking.tableSelected);
+      thisBooking.resetTable = null;
+
       if(
         !allAvailable
         &&

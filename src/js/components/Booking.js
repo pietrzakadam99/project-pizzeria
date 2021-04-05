@@ -267,7 +267,6 @@ class Booking{
         thisBooking.makeBooked(parsedResponse.date, parsedResponse.hour, parsedResponse.duration, parsedResponse.table);
         thisBooking.updateDOM();
         thisBooking.removeSelected();
-        
         console.log(parsedResponse);
       });
   }

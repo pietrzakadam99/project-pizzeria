@@ -137,7 +137,7 @@ class Booking{
 
       // zmiana godziny, dnia, liczby osób 
       table.classList.remove(classNames.booking.tableSelected);
-      thisBooking.resetTable = null;
+      //thisBooking.resetTable = null;
 
       if(
         !allAvailable
@@ -216,10 +216,12 @@ class Booking{
           table.classList.add(classNames.booking.tableSelected);
           const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
           thisBooking.selectedTable = parseInt(tableNumber);
-        }
+        }   
+
+        
       });
     }
-  }
+  }                          
   
   removeSelected(){
     const thisBooking = this;
@@ -227,7 +229,7 @@ class Booking{
     const selectedTables = document.querySelectorAll('.selected');
     
     for(let selected of selectedTables){
-      selected.classList.remove(classNames.booking.tableSelected);
+      selected.classList.remove(classNames.booking.tableSelected); 
     }
     
     delete thisBooking.selectedTable;

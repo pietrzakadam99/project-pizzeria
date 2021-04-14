@@ -210,15 +210,17 @@ class Booking{
 
         if (table.classList.contains('booked')) { 
           alert('not available');
-
         } else {
-          thisBooking.removeSelected();
-          table.classList.add(classNames.booking.tableSelected);
-          const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
-          thisBooking.selectedTable = parseInt(tableNumber);
-        }   
+          const tableNumber = parseInt(table.getAttribute(settings.booking.tableIdAttribute));
+          const selected = thisBooking.selectedTable === tableNumber;
 
-        
+          thisBooking.removeSelected();
+
+          if (!selected){
+            table.classList.add(classNames.booking.tableSelected);
+            thisBooking.selectedTable = tableNumber;
+          }
+        }
       });
     }
   }                          

@@ -10,7 +10,6 @@ export const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    
 
     const idFromHash = window.location.hash.replace('#/', '');
 
@@ -24,8 +23,13 @@ export const app = {
     }
 
     thisApp.activatePage(pageMatchingHash);
+    
+    thisApp.initNavLinks(thisApp.navLinks);
+  },
 
-    for(let link of thisApp.navLinks){
+  initNavLinks: function(links){
+    const thisApp = this;
+    for(let link of links){
       link.addEventListener('click', function(event){
         const clickedElement = this;
         event.preventDefault();
@@ -42,7 +46,6 @@ export const app = {
         
       });
     }
-
   },
 
   activatePage: function(pageId){
@@ -121,13 +124,13 @@ export const app = {
     console.log('classNames:', classNames);
     console.log('settings:', settings);
     console.log('templates:', templates); */
-
+    thisApp.initHome();
     thisApp.initPages();
     
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
-    thisApp.initHome();
+    
   },
 
   initCart: function(){

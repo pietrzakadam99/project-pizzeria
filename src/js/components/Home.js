@@ -9,7 +9,6 @@ class Home {
     thisHome.render(element);
     thisHome.initWidgets();
 
-    thisHome.initActions();
     thisHome.navigate();
   }
   
@@ -24,8 +23,7 @@ class Home {
 
     thisHome.dom.wrapper.innerHTML = generatedHTML;
 
-    thisHome.dom.orderOnline = document.querySelector(select.home.orderButton);
-    thisHome.dom.bookTable = document.querySelector(select.home.bookButton);
+    thisHome.dom.navLinks = thisHome.dom.wrapper.querySelectorAll(select.home.mainOptions);
   }
   
   initWidgets() {
@@ -41,33 +39,17 @@ class Home {
       prevNextButtons: false,
       wrapAround: true,
     });
-  }
+  
 
-  initActions(){
-    const thisHome = this;
-    
-    thisHome.dom.orderOnline.addEventListener('click', function(event){
-      event.preventDefault();
-    });
-    
-    thisHome.dom.bookTable.addEventListener('click', function(event){
-      event.preventDefault();
-    });
+    window.onload = function () {
+      thisHome.flkty.resize();
+    };
   }
     
   navigate(){
     const thisHome = this;
     
-    thisHome.dom.bookTable.addEventListener('click', function(){
-      app.activatePage('booking');
-      window.location.hash = '/#booking';
-    });
-    
-    thisHome.dom.orderOnline.addEventListener('click', function(){
-      app.activatePage('order');
-      window.location.hash = '/#order';
-    });
-    
+    app.initNavLinks(thisHome.dom.navLinks);
   }
 }
   

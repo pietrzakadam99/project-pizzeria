@@ -31,6 +31,7 @@
     font-weight: $font-semibold;
   }
 
+
   .order-online, .book-table {
     height: 150px;
     width: 300px;
@@ -54,6 +55,7 @@
       text-transform: lowercase;
       font-size: 14px;
     }
+
   }
 
   .order-online {
@@ -64,18 +66,18 @@
     background-image: url("./../../images/assets/pizza-2.jpg");
   }
 
-  .order-online:hover {
+  .order-online:hover, .book-table:hover {
     h2 {
       transform: translateY(-40px);
       opacity: 1;
-      transition: 0.7s all;
+      transition: 0.3s all;
     }
 
     p {
       visibility: visible;
       transform: translateY(-38px);
       opacity: 1;
-      transition: 0.7s all;
+      transition: 0.3s all;
     }
   }
 
@@ -86,6 +88,11 @@
     width: 600px;
     margin: 3px;
     border-radius: $radius;
+  }
+
+  a {
+    text-decoration: none;
+    color: $color-light;
   }
 }
 
@@ -207,5 +214,9 @@
     color: $color-main;
     text-decoration: none;
   }
+}
+
+.flickity-viewport {
+  height: 100% !important;
 }
 
